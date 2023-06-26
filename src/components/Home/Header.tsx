@@ -1,15 +1,44 @@
-import { Text, View } from "native-base";
+import { Button, Text, View } from "native-base";
 
-export function Header() {
+interface HeaderProps {
+  selectedTable: string;
+  onCancelOrder: () => void;
+}
+
+export function Header({ selectedTable, onCancelOrder }: HeaderProps) {
+  
   return (
     <View mt={6} mx={6}>
-      <Text fontSize="sm" opacity={0.9}>
-        Bem vindo(a) ao
-      </Text>
-      <Text fontSize="2xl" fontFamily="heading">
-        WAITER
-        <Text fontSize="2xl" fontFamily="mono">APP</Text>
-      </Text>
+      {selectedTable ? (
+        <>
+          <Text fontSize="sm" opacity={0.9}>
+            Bem vindo(a) ao
+          </Text>
+          <Text fontSize="2xl" fontFamily="heading">
+            WAITER
+            <Text fontSize="2xl" fontFamily="mono">
+              APP
+            </Text>
+          </Text>
+        </>
+      ) : (
+        <View>
+          <View flexDirection="row" justifyContent="space-between" alignItems="center">
+            <Text fontFamily="body" fontSize={6}>
+              Pedido
+            </Text>
+            <Button onPress={onCancelOrder}> 
+              <Text color="#D73035" fontFamily="body" fontSize="sm">
+                cancelar pedido
+              </Text>
+            </Button>
+          </View>
+
+          <View mt={6} bg="white" borderColor="rgba(204, 204, 204, 0.3)" borderWidth="1px" rounded={2} p={4}>
+            <Text color="#666">Mesa {selectedTable}</Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 }

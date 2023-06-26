@@ -4,6 +4,9 @@ import { Home } from './src/screens/Home';
 import { Loading } from './src/components/Loading';
 import { THEME } from './src/theme';
 
+import 'intl'
+import 'intl/locale-data/jsonp/pt-BR'
+
 export default function App() {
   const [fontsLoaded] = useFonts({ Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_700Bold })
 
