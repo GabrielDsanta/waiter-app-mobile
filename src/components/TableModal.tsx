@@ -24,45 +24,45 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
 
     return (
         <Modal animationPreset="fade" isOpen={visible}>
-        <KeyboardAvoidingView
-            behavior={isAndroid ? "height" : "padding"}
-            px={6}
-            bg="rgba(0, 0, 0, 0.6)"
-            flex={1}
-            alignItems="center"
-            justifyContent="center"
-        >
-
-            <View w="full" p={6} bg="#FAFAFA" rounded={2}>
-            <View
-                flexDirection="row"
+            <KeyboardAvoidingView
+                w="full"
+                px={6}
+                bg="rgba(0, 0, 0, 0.6)"
+                flex={1}
                 alignItems="center"
-                justifyContent="space-between"
-                >
-                <Text fontFamily="body"></Text>
-                <NativeBaseButton onPress={onClose}>
-                <AntDesign name="close" size={24} color="#666" />
-                </NativeBaseButton>
-            </View>
+                justifyContent="center"
+            >
 
-            <View mt={8}>
-                <Input
-                onChangeText={setTableText}
-                bg="#FFF"
-                rounded={2}
-                p={4}
-                borderColor="rgba(204, 204, 204, 0.5)"
-                borderWidth="1px"
-                placeholderTextColor="#666"
-                mb={6}
-                keyboardType="number-pad"
-                placeholder="Número da mesa"
-                />
+                <View w="full" p={6} bg="#FAFAFA" rounded={2}>
+                <View
+                    flexDirection="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    >
+                    <Text fontFamily="heading">Informar a mesa</Text>
+                    <NativeBaseButton bg="transparent" onPress={onClose}>
+                    <AntDesign name="close" size={24} color="#666" />
+                    </NativeBaseButton>
+                </View>
 
-                <Button onPress={handleSave} text="Salvar" disabled={tableText.length === 0} key={1} />
-            </View>
-            </View>
-        </KeyboardAvoidingView>
+                <View mt={5}>
+                    <Input
+                    onChangeText={setTableText}
+                    bg="#FFF"
+                    rounded={2}
+                    p={4}
+                    borderColor="rgba(204, 204, 204, 0.5)"
+                    borderWidth="1px"
+                    placeholderTextColor="#666"
+                    mb={6}
+                    keyboardType="number-pad"
+                    placeholder="Número da mesa"
+                    />
+
+                    <Button onPress={handleSave} text="Salvar" disabled={tableText.length === 0} key={1} />
+                </View>
+                </View>
+            </KeyboardAvoidingView>
         </Modal>
     );
 }

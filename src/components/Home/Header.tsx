@@ -9,7 +9,7 @@ export function Header({ selectedTable, onCancelOrder }: HeaderProps) {
   
   return (
     <View mt={6} mx={6}>
-      {selectedTable ? (
+      {!selectedTable ? (
         <>
           <Text fontSize="sm" opacity={0.9}>
             Bem vindo(a) ao
@@ -24,11 +24,11 @@ export function Header({ selectedTable, onCancelOrder }: HeaderProps) {
       ) : (
         <View>
           <View flexDirection="row" justifyContent="space-between" alignItems="center">
-            <Text fontFamily="body" fontSize={6}>
+            <Text fontFamily="heading" fontSize="2xl">
               Pedido
             </Text>
-            <Button onPress={onCancelOrder}> 
-              <Text color="#D73035" fontFamily="body" fontSize="sm">
+            <Button bg="transparent" onPress={onCancelOrder}> 
+              <Text color="#D73035" fontFamily="heading" fontSize="sm">
                 cancelar pedido
               </Text>
             </Button>

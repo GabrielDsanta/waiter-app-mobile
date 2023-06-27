@@ -1,11 +1,15 @@
 import { Box, FlatList, Text, Button } from "native-base";
 import { useState } from "react";
 import { Platform } from "react-native";
+import { Category } from "../../models/Category";
 
 const isAndroid = Platform.OS === "android";
 
-export function Category() {
-  const [categories, setCategories] = useState([]);
+interface CategoryProps {
+  categories: Category[]
+}
+
+export function CategoryList({ categories }: CategoryProps) {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   function handleSelectCategory(categoryId: string) {
@@ -17,16 +21,16 @@ export function Category() {
   return (
     <FlatList
       renderItem={({ item }) => {
-        const isSelected = selectedCategory === item
+        const isSelected = selectedCategory === item.name
 
         return (
           <Button
-            onPress={() => handleSelectCategory(item)}
-            ml={4}
+            bg="transparent"
+            onPress={() => handleSelectCategory(item._id)}
             alignItems="center"
             mt={8}
             height="73px">
-            <Box>
+            <Box alignItems="center" justifyContent="center">
               <Box
                 style={{
                   shadowColor: `rgba(0, 0, 0, ${isAndroid ? 1 : 0.1})`,
@@ -40,18 +44,18 @@ export function Category() {
                 justifyContent="center"
                 flexDirection="row"
                 mb={2}>
-                <Text opacity={isSelected ? 1 : 0.5}></Text>
+                <Text opacity={isSelected ? 1 : 0.5}>{item.icon}</Text>
               </Box>
-              <Text opacity={isSelected ? 1 : 0.5} fontSize="sm" fontFamily="body"></Text>
+              <Text opacity={isSelected ? 1 : 0.5} fontSize="sm" fontFamily="body">{item.name}</Text>
             </Box>
           </Button>
         );
       }}
       data={categories}
-      keyExtractor={(item) => item}
+      keyExtractor={(item) => item._id}
       horizontal
+      ml={2}
       showsHorizontalScrollIndicator={false}
-      _contentContainerStyle={{ px: 8 }}
     />
   );
 }

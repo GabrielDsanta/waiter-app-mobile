@@ -1,18 +1,19 @@
-import { Text, Button as TouchableOpacityBase } from "native-base"
+import { Spinner, Text, Button as TouchableOpacityBase } from "native-base"
 
 interface ButtonProps {
     text: string;
     onPress: () => void;
     disabled?: boolean;
+    isLoading?: boolean;
 }
 
-export function Button({ text, onPress, disabled = false }: ButtonProps){
+export function Button({ text, onPress, disabled = false, isLoading = false }: ButtonProps){
     return(
         <TouchableOpacityBase 
             _pressed={{
                 bg: "#dd6266"
             }}
-            disabled={disabled} 
+            disabled={disabled || isLoading} 
             onPress={onPress} 
             width="full" 
             alignItems="center" 
@@ -20,7 +21,11 @@ export function Button({ text, onPress, disabled = false }: ButtonProps){
             bg={disabled ? "#999" : "#D73035" } 
             rounded="full"
         >
-            <Text color="white" fontFamily="body">{text}</Text>
+            {!isLoading ? (
+                <Text color="white" fontFamily="body">{text}</Text>
+            ): (
+                <Spinner color="white" />
+            )}
         </TouchableOpacityBase>
     )
 }
